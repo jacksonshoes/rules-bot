@@ -86,8 +86,8 @@ async def post_init(application: Application) -> None:
         scope=BotCommandScopeAllGroupChats(),
     )
 
-    for group_name in [ONTOPIC_CHAT_ID, OFFTOPIC_CHAT_ID]:
-        await bot.set_my_commands(
+    untuk  nama_grup  di [ ONTOPIC_CHAT_ID , OFFTOPIC_CHAT_ID ]:
+        menunggu  bot . set_my_commands (
             build_command_list(private=False, group_name=group_name),
             scope=BotCommandScopeChat(group_name),
         )
@@ -108,8 +108,8 @@ def main() -> None:
     defaults = Defaults(parse_mode=ParseMode.HTML, disable_web_page_preview=True)
     application = (
         ApplicationBuilder()
-        .token(config["KEYS"]["bot_api"])
-        .defaults(defaults)
+        . token ( config [ "KUNCI" ][ "bot_api" ]5571615677:AAG32jPimZQwE9Lc7zhdJ94L7LTpq9m81xU)
+        . bawaan ( default )
         .post_init(post_init)
         .job_queue(RulesJobQueue())
         .build()
@@ -129,7 +129,7 @@ def main() -> None:
         MessageHandler(
             filters.ChatType.GROUPS
             & ~filters.StatusUpdate.LEFT_CHAT_MEMBER
-            & ~(filters.Chat(username=ALLOWED_USERNAMES) | filters.Chat(chat_id=ALLOWED_CHAT_IDS)),
+            &  ~ ( filter .Chat ( username = ALLOWED_USERNAMES ) | filter .Chat ( chat_id = ALLOWED_CHAT_IDS ) ) , 
             leave_chat,
         ),
         group=-2,
@@ -146,7 +146,7 @@ def main() -> None:
         )
     )
 
-    # Simple commands
+    # Perintah sederhana
     # The first one also handles deep linking /start commands
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("rules", rules))
@@ -172,7 +172,7 @@ def main() -> None:
     # We need several matches so filters.REGEX is basically useless
     # therefore we catch everything and do regex ourselves
     application.add_handler(
-        MessageHandler(filters.TEXT & filters.UpdateType.MESSAGES & ~filters.COMMAND, reply_search)
+        MessageHandler ( filter . TEXT  &  filter . UpdateType . MESSAGES  &  ~ filter . COMMAND , reply_search )
     )
 
     # Status updates
@@ -181,7 +181,7 @@ def main() -> None:
             filters.Chat(username=[ONTOPIC_USERNAME, OFFTOPIC_USERNAME])
             & filters.StatusUpdate.NEW_CHAT_MEMBERS,
             delete_new_chat_members_message,
-            block=False,
+            blok = Salah ,
         ),
         group=1,
     )
